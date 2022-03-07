@@ -1,5 +1,6 @@
 from os.path import join as os_path_join
-from pyrogram import Client, Message, MessageHandler, Filters, CallbackQueryHandler
+from pyrogram import Client, filters
+from pyrogram.types import Message, MessageHandler, CallbackQueryHandler
 from bot import CONFIG, COMMAND, LOCAL, LOGGER, STATUS
 from bot.handlers import *
 import asyncio
@@ -19,7 +20,7 @@ app.set_parse_mode("html")
 app.add_handler(
     MessageHandler(
         start_message_handler.func,
-        filters=Filters.command(COMMAND.START)
+        filters=filters.command(COMMAND.START)
     )
 )
 
@@ -28,7 +29,7 @@ if CONFIG.BOT_PASSWORD:
     app.add_handler(
         MessageHandler(
             password_handler.func,
-            filters = Filters.command(COMMAND.PASSWORD)
+            filters = filters.command(COMMAND.PASSWORD)
         )
     )
 
